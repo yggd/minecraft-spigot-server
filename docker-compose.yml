@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  spigot:
+    build:
+      context: .
+    ports:
+      - 25565:25565
+    volumes:
+      - type: bind
+        source: ./plugins
+        target: /opt/spigot/1.20.4/plugins
+      - type: volume
+        source: worlds
+        target: /opt/spigot/1.20.4/worlds
+      - type: volume
+        source: Backups
+        target: /opt/spigot/1.20.4/Backups
+    tty: true
+    stdin_open: true
+
+volumes:
+  worlds:
+    name: worlds
+    driver: local
+  Backups:
+    name: Backups
+    driver: local
